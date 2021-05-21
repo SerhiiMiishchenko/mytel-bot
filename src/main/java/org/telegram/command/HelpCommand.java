@@ -10,8 +10,8 @@ public class HelpCommand implements Command{
     private final SendBotMessageService sendBotMessageService;
     private final String HELP_MESSAGE = "<b>Доступные команды</b>:\n"
             + "/start" + " - начало работы с ботом\n" +
-            "/rp5" + " - узнать текущий прогноз с  rp5\n" +
-            "/gismeteo" + " - узнать текущий прогноз с  Gismeteo\n" +
+            "/rp5" + " - узнать текущий прогноз с rp5\n" +
+            "/gismeteo" + " - узнать текущий прогноз с Gismeteo\n" +
             "/help" + "- получить список всех команд";
 
     public HelpCommand(SendBotMessageService sendBotMessageService) {

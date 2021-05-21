@@ -8,8 +8,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public class NoCommand implements Command{
     private final SendBotMessageService sendBotMessageService;
-    private final String NO_MESSAGE = "Я поддерживаю комманды которые начинаются" +
-            "с \"/\".\n Для вывода списка доступных комманд" +
+    private final String NO_MESSAGE = "Я поддерживаю команды которые начинаются " +
+            "с \"/\".\n Для вывода списка доступных команд" +
             "введите /help";
 
     public NoCommand(SendBotMessageService sendBotMessageService) {

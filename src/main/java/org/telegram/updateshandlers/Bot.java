@@ -11,6 +11,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import static org.telegram.command.CommandName.*;
 
 
@@ -19,19 +24,52 @@ public class Bot extends TelegramLongPollingBot{
     final int RECONNECT_PAUSE = 10000;
     public static String COMMAND_PREFIX = "/";
     private final CommandContainer commandContainer;
+    InputStream inputStream;
+
 
     public Bot() {
+        super();
         this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
     }
 
     @Override
     public String getBotUsername() {
-        return null;
+        String botName = "";
+        try {
+            Properties properties = new Properties();
+            String propFileName = "application.properties";
+
+            inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+            if (inputStream != null) {
+                properties.load(inputStream);
+            } else {
+                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            botName = properties.getProperty("bot.username");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return botName;
     }
 
     @Override
     public String getBotToken() {
-        return null;
+        String botToken = "";
+        try {
+            Properties properties = new Properties();
+            String propFileName = "application.properties";
+
+            inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+            if (inputStream != null) {
+                properties.load(inputStream);
+            } else {
+                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            botToken = properties.getProperty("bot.token");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return botToken;
     }
 
     @Override
@@ -50,7 +88,7 @@ public class Bot extends TelegramLongPollingBot{
         }
     }
 
-    public void botConnect() throws TelegramApiException {
+    /*public void botConnect() throws TelegramApiException {
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             telegramBotsApi.registerBot(this);
@@ -65,5 +103,5 @@ public class Bot extends TelegramLongPollingBot{
             }
             botConnect();
         }
-    }
+    }*/
 }
