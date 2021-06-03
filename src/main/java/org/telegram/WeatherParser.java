@@ -21,7 +21,7 @@ public class WeatherParser {
             temperatureNow = doc.select("#ArchTemp > span.t_0").text();
             String[] forecastTodayRp5 = doc.select("#forecastShort-content > b").text().split(" ");
             forecast = forecastTodayRp5[0] + " " + forecastTodayRp5[1] + " " + forecastTodayRp5[2] + " " + forecastTodayRp5[3].charAt(0)
-                    + forecastTodayRp5[3].charAt(1) + " " + forecastTodayRp5[6] + " " + forecastTodayRp5[7] + " " + forecastTodayRp5[8] + " " +forecastTodayRp5[9];
+                    + forecastTodayRp5[3].charAt(1) + " " + forecastTodayRp5[6] + " " + forecastTodayRp5[7] + " " + forecastTodayRp5[8] + " " +forecastTodayRp5[9] + " " +forecastTodayRp5[10];
         } catch (IOException e) {
             System.out.println("Site request error");
             e.printStackTrace();

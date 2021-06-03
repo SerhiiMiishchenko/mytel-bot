@@ -25,6 +25,8 @@ public class Bot extends TelegramLongPollingBot{
     public static String COMMAND_PREFIX = "/";
     private final CommandContainer commandContainer;
     InputStream inputStream;
+    private static final String BOT_NAME = System.getenv("BOT_NAME");
+    private static final String BOT_TOKEN = System.getenv("BOT_TOKEN");
 
 
     public Bot() {
@@ -34,7 +36,7 @@ public class Bot extends TelegramLongPollingBot{
 
     @Override
     public String getBotUsername() {
-        String botName = "";
+        /*String botName = "";
         try {
             Properties properties = new Properties();
             String propFileName = "application.properties";
@@ -48,13 +50,14 @@ public class Bot extends TelegramLongPollingBot{
             botName = properties.getProperty("bot.username");
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        return botName;
+        }*/
+        return BOT_NAME;
     }
 
     @Override
     public String getBotToken() {
-        String botToken = "";
+
+        /*String botToken = "";
         try {
             Properties properties = new Properties();
             String propFileName = "application.properties";
@@ -69,7 +72,8 @@ public class Bot extends TelegramLongPollingBot{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return botToken;
+        */
+        return BOT_TOKEN;
     }
 
     @Override
@@ -88,20 +92,4 @@ public class Bot extends TelegramLongPollingBot{
         }
     }
 
-    /*public void botConnect() throws TelegramApiException {
-        try {
-            TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-            telegramBotsApi.registerBot(this);
-            log.info("TelegramAPI started. Look for messages");
-        } catch (TelegramApiRequestException e) {
-            log.error("Cant Connect. Pause " + RECONNECT_PAUSE/1000 + "sec and try again. Error: " + e.getMessage());
-            try {
-                Thread.sleep(RECONNECT_PAUSE);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-                return;
-            }
-            botConnect();
-        }
-    }*/
 }
